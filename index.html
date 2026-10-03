@@ -1,389 +1,228 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Jay Somnath Tea Stall | A Taste of Tradition</title>
+    <title>Jay Somnath Tea Stall | Nikol, Ahmedabad</title>
 
-<meta name="description" content="Welcome to Jay Somnath Tea Stall. Enjoy fresh chai, traditional Indian tea and delicious snacks.">
+    <meta name="description" content="Jay Somnath Tea Stall near Shukan Bungalows, Nikol, Ahmedabad. Fresh chai and nashta, brewed through the day.">
 
-<meta name="theme-color" content="#17100c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="preloader" id="preloader">
-    <div class="preloader-logo">JS</div>
-    <p>JAY SOMNATH</p>
-    <span>BREWING MOMENTS...</span>
-</div>
-
-<header class="header" id="header">
-    <div class="container nav-wrap">
-
-        <a href="#home" class="brand">
-            <span class="brand-icon">JS</span>
-            <span class="brand-text">
-                <strong>JAY SOMNATH</strong>
-                <small>TEA STALL</small>
+<header class="site-header" id="siteHeader">
+    <div class="container header-row">
+        <a href="#home" class="logo">
+            <span class="logo-mark" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 11c0-3 1.5-4.5 1.5-6.5 0-1-.5-1.8-.5-1.8s2.5.3 2.5 3c0 1.5-1 2.3-1 3.8 0 1 .7 1.5 1.5 1.5" stroke="#E3A72E" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 11h16l-1.3 8.5a2 2 0 01-2 1.7H8.3a2 2 0 01-2-1.7L5 11z" stroke="#E3A72E" stroke-width="1.3" stroke-linejoin="round"/>
+                    <path d="M19 12.5h1.5a2.5 2.5 0 010 5H19" stroke="#E3A72E" stroke-width="1.3"/>
+                </svg>
             </span>
+            <span class="logo-text">Jay Somnath <em>Tea Stall</em></span>
         </a>
 
-        <nav class="nav" id="nav">
+        <nav id="navMenu" class="nav">
             <a href="#home">Home</a>
-            <a href="#about">Our Story</a>
-            <a href="#menu">Our Menu</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Visit Us</a>
+            <a href="#about">About</a>
+            <a href="#menu">Menu</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#location">Location</a>
         </nav>
 
-        <a href="tel:+910000000000" class="nav-button">
-            <span>Visit Our Stall</span>
-            <span>↗</span>
-        </a>
+        <a href="https://wa.me/918866851613" class="btn btn-ghost nav-cta" target="_blank" rel="noopener">WhatsApp</a>
 
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
-            <span></span>
-            <span></span>
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
         </button>
-
     </div>
 </header>
 
-<main>
-
-<!-- HERO -->
-
 <section class="hero" id="home">
-
-    <div class="hero-image"></div>
-    <div class="hero-shade"></div>
-
-    <div class="hero-content container">
-
-        <div class="hero-tag reveal">
-            <span class="tag-line"></span>
-            A LITTLE CUP OF HAPPINESS
-        </div>
-
-        <h1 class="hero-title">
-            <span class="title-line">Chai That</span>
-            <span class="title-line italic">Feels Like</span>
-            <span class="title-line gold">Home.</span>
-        </h1>
-
-        <p class="hero-description reveal">
-            Freshly brewed chai, familiar flavours and warm conversations.
-            Some moments are simply better with a cup of tea.
-        </p>
-
-        <div class="hero-actions reveal">
-            <a href="#menu" class="btn btn-primary">
-                Explore Our Menu <span>↗</span>
-            </a>
-
-            <a href="#about" class="btn btn-link">
-                Discover Our Story <span>↓</span>
-            </a>
-        </div>
-
+    <div class="hero-bg">
+        <img src="https://images.pexels.com/photos/5946623/pexels-photo-5946623.jpeg?w=1600&h=1100&dpr=1" alt="" aria-hidden="true">
     </div>
+    <div class="hero-overlay"></div>
 
-    <div class="hero-bottom container">
-        <span>☕ FRESHLY BREWED · MADE WITH LOVE</span>
-        <span>JAY SOMNATH TEA STALL</span>
+    <div class="container hero-grid">
+        <div class="hero-content">
+            <p class="eyebrow">Your corner for chai pe charcha</p>
+
+            <h1 class="display">Jay Somnath<br>Tea Stall</h1>
+
+            <p class="hero-text">
+                Hot, fresh chai and simple nashta, served through the day
+                near Shukan Bungalows, Nikol, Ahmedabad.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="https://wa.me/918866851613" class="btn btn-solid" target="_blank" rel="noopener">Message on WhatsApp</a>
+                <a href="tel:+918866851613" class="btn btn-outline">Call 88668 51613</a>
+            </div>
+        </div>
     </div>
-
-    <div class="hero-orb orb-one"></div>
-    <div class="hero-orb orb-two"></div>
-
 </section>
 
-<!-- INTRO -->
+<section class="about section" id="about">
+    <div class="container about-grid">
 
-<section class="intro section" id="about">
-
-    <div class="container intro-grid">
-
-        <div class="intro-image reveal">
-            <img src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?auto=format&fit=crop&w=1000&q=85"
-                 alt="Fresh Indian chai served in a cup" loading="lazy">
-
-            <div class="image-label">
-                <span>THE PERFECT POUR</span>
-                <span>✳</span>
+        <div class="about-image">
+            <div class="framed-image">
+                <img src="https://images.pexels.com/photos/5947062/pexels-photo-5947062.jpeg?auto=compress&cs=tinysrgb&w=900"
+                     alt="Hot masala chai with cinnamon and star anise">
             </div>
         </div>
 
-        <div class="intro-content reveal">
-
-            <p class="eyebrow">OUR LITTLE STORY</p>
-
-            <h2 class="section-title">
-                More than chai.<br>
-                <em>It's a feeling.</em>
-            </h2>
+        <div class="about-content">
+            <p class="eyebrow">Welcome</p>
+            <h2 class="display">A cup of chai, any time of day</h2>
 
             <p>
-                At Jay Somnath Tea Stall, chai is more than a drink.
-                It is a reason to pause, connect and enjoy the little
-                moments of everyday life.
+                Jay Somnath Tea Stall is a neighbourhood spot in Nikol, serving
+                hot chai and light nashta to regulars on their way to work,
+                friends catching up, and anyone who needs a few minutes with
+                a good cup of tea.
             </p>
 
             <p>
-                From the first morning sip to evening conversations,
-                we bring the familiar warmth of Indian chai to your day.
+                Every cup is brewed fresh through the day — simple, hot and
+                made the way a proper stall chai should be.
             </p>
 
-            <a href="#contact" class="text-link">
-                Come say hello <span>↗</span>
-            </a>
-
+            <a href="#location" class="text-link">Find us near Shukan Bungalows &rarr;</a>
         </div>
 
     </div>
-
 </section>
 
-<!-- MARQUEE -->
-
-<div class="marquee">
-    <div class="marquee-track">
-        <span>CHAI · CONVERSATIONS · COMFORT ·</span>
-        <span>CHAI · CONVERSATIONS · COMFORT ·</span>
-        <span>CHAI · CONVERSATIONS · COMFORT ·</span>
-        <span>CHAI · CONVERSATIONS · COMFORT ·</span>
-    </div>
-</div>
-
-<!-- MENU -->
-
-<section class="menu-section section" id="menu">
-
+<section class="menu section" id="menu">
     <div class="container">
 
-        <div class="section-heading reveal">
-            <p class="eyebrow">A CUP FOR EVERY MOOD</p>
-            <h2 class="section-title">
-                Our Chai <em>Menu.</em>
-            </h2>
-            <p>Simple favourites. Freshly prepared. Full of flavour.</p>
+        <div class="section-heading">
+            <p class="eyebrow">On the board</p>
+            <h2 class="display">Chai &amp; nashta</h2>
+            <p class="menu-note">A few of our regulars — ask us what's fresh today.</p>
         </div>
 
-        <div class="menu-grid">
+        <div class="menu-list">
 
-            <article class="menu-card reveal">
-                <div class="menu-photo">
-                    <img src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?auto=format&fit=crop&w=700&q=85"
-                         alt="Traditional Indian milk tea" loading="lazy">
-                    <span class="menu-number">01</span>
-                </div>
-                <div class="menu-info">
-                    <div class="menu-title">
-                        <h3>Regular Chai</h3>
-                        <span>₹ --</span>
-                    </div>
-                    <p>Classic Indian tea brewed with milk and aromatic spices.</p>
-                </div>
-            </article>
-
-            <article class="menu-card reveal">
-                <div class="menu-photo">
-                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=700&q=85"
-                         alt="Masala tea in a cup" loading="lazy">
-                    <span class="menu-number">02</span>
-                </div>
-                <div class="menu-info">
-                    <div class="menu-title">
-                        <h3>Masala Chai</h3>
-                        <span>₹ --</span>
-                    </div>
-                    <p>A comforting blend of tea and warming spices.</p>
-                </div>
-            </article>
-
-            <article class="menu-card reveal">
-                <div class="menu-photo">
-                    <img src="https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=700&q=85"
-                         alt="Hot tea with ginger" loading="lazy">
-                    <span class="menu-number">03</span>
-                </div>
-                <div class="menu-info">
-                    <div class="menu-title">
-                        <h3>Adrak Chai</h3>
-                        <span>₹ --</span>
-                    </div>
-                    <p>Ginger-infused chai with a refreshing, warming taste.</p>
-                </div>
-            </article>
-
-            <article class="menu-card reveal">
-                <div class="menu-photo">
-                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=700&q=85"
-                         alt="Tea and cafe snacks" loading="lazy">
-                    <span class="menu-number">04</span>
-                </div>
-                <div class="menu-info">
-                    <div class="menu-title">
-                        <h3>Tea & Snacks</h3>
-                        <span>₹ --</span>
-                    </div>
-                    <p>Your favourite tea paired with a little something to eat.</p>
-                </div>
-            </article>
+            <div class="menu-row">
+                <span class="menu-name">Masala Chai</span>
+                <span class="menu-dots" aria-hidden="true"></span>
+                <span class="menu-price">&#8377; —</span>
+            </div>
+            <div class="menu-row">
+                <span class="menu-name">Adrak Chai</span>
+                <span class="menu-dots" aria-hidden="true"></span>
+                <span class="menu-price">&#8377; —</span>
+            </div>
+            <div class="menu-row">
+                <span class="menu-name">Elaichi Chai</span>
+                <span class="menu-dots" aria-hidden="true"></span>
+                <span class="menu-price">&#8377; —</span>
+            </div>
+            <div class="menu-row">
+                <span class="menu-name">Kadak Chai</span>
+                <span class="menu-dots" aria-hidden="true"></span>
+                <span class="menu-price">&#8377; —</span>
+            </div>
+            <div class="menu-row">
+                <span class="menu-name">Bun Maska</span>
+                <span class="menu-dots" aria-hidden="true"></span>
+                <span class="menu-price">&#8377; —</span>
+            </div>
+            <div class="menu-row">
+                <span class="menu-name">Khari Biscuit</span>
+                <span class="menu-dots" aria-hidden="true"></span>
+                <span class="menu-price">&#8377; —</span>
+            </div>
+            <div class="menu-row">
+                <span class="menu-name">Vada Pav</span>
+                <span class="menu-dots" aria-hidden="true"></span>
+                <span class="menu-price">&#8377; —</span>
+            </div>
+            <div class="menu-row">
+                <span class="menu-name">Samosa</span>
+                <span class="menu-dots" aria-hidden="true"></span>
+                <span class="menu-price">&#8377; —</span>
+            </div>
 
         </div>
-
-        <p class="menu-note">Menu items and prices can be updated as per actual availability.</p>
-
     </div>
-
 </section>
 
-<!-- EXPERIENCE -->
-
-<section class="experience" id="experience">
-
-    <div class="experience-bg"></div>
-    <div class="experience-overlay"></div>
-
-    <div class="container experience-content reveal">
-        <p class="eyebrow">THE CHAI EXPERIENCE</p>
-
-        <h2>
-            Good chai.<br>
-            Great company.<br>
-            <em>Beautiful moments.</em>
-        </h2>
-
-        <p>
-            Because the best conversations often begin with,
-            "Ek chai ho jaaye?"
-        </p>
-
-        <a href="#contact" class="btn btn-primary">
-            Find Your Chai Spot <span>↗</span>
-        </a>
-    </div>
-
-</section>
-
-<!-- WHY US -->
-
-<section class="why-section section">
-
+<section class="gallery section" id="gallery">
     <div class="container">
-
-        <div class="section-heading reveal">
-            <p class="eyebrow">THE JAY SOMNATH WAY</p>
-            <h2 class="section-title">Made for the <em>chai lovers.</em></h2>
+        <div class="section-heading section-heading--light">
+            <p class="eyebrow">A look inside</p>
+            <h2 class="display">What's brewing</h2>
         </div>
 
-        <div class="why-grid">
-
-            <div class="why-item reveal">
-                <span>✳</span>
-                <h3>Freshly Prepared</h3>
-                <p>Every cup is made fresh for your chai break.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item gallery-item--tall">
+                <img src="https://images.pexels.com/photos/5946612/pexels-photo-5946612.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Traditional Indian tea with milk and spices">
             </div>
-
-            <div class="why-item reveal">
-                <span>☕</span>
-                <h3>Familiar Flavours</h3>
-                <p>The comforting taste of traditional Indian chai.</p>
+            <div class="gallery-item">
+                <img src="https://images.pexels.com/photos/32845310/pexels-photo-32845310/free-photo-of-flavorful-indian-vada-pav-with-chutneys.jpeg?cs=tinysrgb&w=800" alt="Vada pav with chutneys">
             </div>
-
-            <div class="why-item reveal">
-                <span>♡</span>
-                <h3>Warm Hospitality</h3>
-                <p>A welcoming place for friends, family and conversations.</p>
+            <div class="gallery-item">
+                <img src="https://images.pexels.com/photos/35041878/pexels-photo-35041878/free-photo-of-delicious-indian-dhokla-with-chutney-on-plate.jpeg?cs=tinysrgb&w=800" alt="Dhokla served with chutney">
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-<!-- CONTACT -->
+<section class="location section" id="location">
+    <div class="container location-grid">
 
-<section class="contact section" id="contact">
+        <div class="location-content">
+            <p class="eyebrow">Find us</p>
+            <h2 class="display">Drop by for a cup</h2>
 
-    <div class="container contact-inner reveal">
+            <p class="location-address">
+                Jay Somnath Tea Stall<br>
+                Shukan Bungalows, Nikol<br>
+                Ahmedabad, Gujarat
+            </p>
 
-        <span class="contact-star">✳</span>
+            <div class="hero-buttons">
+                <a href="https://wa.me/918866851613" class="btn btn-solid" target="_blank" rel="noopener">
+                    Message on WhatsApp
+                </a>
+                <a href="tel:+918866851613" class="btn btn-outline btn-outline--dark">
+                    Call 88668 51613
+                </a>
+            </div>
 
-        <p class="eyebrow">YOUR NEXT CHAI BREAK AWAITS</p>
-
-        <h2 class="section-title">
-            Chai pe milte <em>hain.</em>
-        </h2>
-
-        <p>
-            Drop by Jay Somnath Tea Stall and make your day
-            a little warmer, one cup at a time.
-        </p>
-
-        <div class="contact-actions">
-            <a href="tel:+918866851613" class="btn btn-primary">
-                Call Us <span>↗</span>
-            </a>
-
-            <a href="https://www.google.com/maps/search/?api=1&query=Jay+Somnath+Tea+Stall"
-               target="_blank" rel="noopener" class="btn btn-outline">
-                Get Directions <span>↗</span>
-            </a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Shukan+Bungalows%2C+Nikol%2C+Ahmedabad"
+               class="text-link" target="_blank" rel="noopener">Get directions &rarr;</a>
         </div>
 
-        <div class="contact-location">
-            <span>FIND US</span>
-            <h3>Jay Somnath Tea Stall</h3>
-            <p>Update with your actual address and city</p>
+        <div class="location-map">
+            <iframe
+                title="Jay Somnath Tea Stall location map"
+                src="https://www.google.com/maps?q=Shukan+Bungalows%2C+Nikol%2C+Ahmedabad&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
 
     </div>
-
 </section>
 
-</main>
-
-<footer class="footer">
-
-    <div class="container footer-top">
-
-        <a href="#home" class="brand">
-            <span class="brand-icon">JS</span>
-            <span class="brand-text">
-                <strong>JAY SOMNATH</strong>
-                <small>TEA STALL</small>
-            </span>
-        </a>
-
-        <p>Brewing warmth, one cup at a time.</p>
-
-        <a href="#home" class="back-top">BACK TO TOP ↑</a>
-
+<footer class="site-footer">
+    <div class="container footer-row">
+        <span class="logo-text footer-logo">Jay Somnath <em>Tea Stall</em></span>
+        <p>&copy; 2026 Jay Somnath Tea Stall, Nikol. All rights reserved.</p>
     </div>
-
-    <div class="container footer-bottom">
-        <span>© <span id="year">2026</span> Jay Somnath Tea Stall</span>
-        <span>MADE WITH ☕ AND LOVE</span>
-    </div>
-
 </footer>
-
-<a href="tel:+918866851613" class="floating-call" aria-label="Call Jay Somnath Tea Stall">
-    ☎
-</a>
 
 <script src="script.js"></script>
 
