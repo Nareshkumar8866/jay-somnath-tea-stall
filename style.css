@@ -160,6 +160,15 @@ img { max-width: 100%; display: block; }
 }
 
 .logo { display: flex; align-items: center; gap: 10px; }
+.logo-mark {
+    display: block;
+    width: 42px; height: 42px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(227, 167, 46, 0.5);
+    flex-shrink: 0;
+}
+.logo-mark img { width: 100%; height: 100%; object-fit: cover; }
 .logo-text {
     font-family: 'Rajdhani', sans-serif;
     font-size: 1.35rem;
@@ -216,8 +225,30 @@ img { max-width: 100%; display: block; }
     background: linear-gradient(100deg, var(--ink) 0%, var(--ink) 38%, rgba(28,15,6,0.55) 75%, rgba(28,15,6,0.35) 100%);
 }
 
-.hero-grid { position: relative; z-index: 2; }
+.hero-grid {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+}
 .hero-content { max-width: 620px; }
+
+.hero-badge {
+    justify-self: center;
+    width: 100%;
+    max-width: 320px;
+    padding: 16px;
+    background: rgba(28, 15, 6, 0.35);
+    border: 1px solid rgba(227, 167, 46, 0.45);
+    border-radius: 12px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+.hero-badge img {
+    width: 100%;
+    border-radius: 6px;
+    display: block;
+}
 
 .hero .display {
     font-size: clamp(2.8rem, 6.2vw, 4.8rem);
@@ -254,6 +285,13 @@ img { max-width: 100%; display: block; }
     pointer-events: none;
 }
 .framed-image img { width: 100%; height: 400px; object-fit: cover; }
+
+.framed-image--mascot {
+    background: var(--ink);
+    border-color: rgba(227, 167, 46, 0.35);
+}
+.framed-image--mascot::before { border-color: rgba(227, 167, 46, 0.5); }
+.framed-image--mascot img { object-fit: contain; height: 420px; }
 
 .about-content p { color: var(--ink-soft); }
 
@@ -337,20 +375,30 @@ img { max-width: 100%; display: block; }
     gap: 12px;
 }
 .footer-logo { font-size: 1.05rem; }
+.footer-brand .logo-mark { width: 48px; height: 48px; }
+.footer-meta { text-align: right; }
 .site-footer p {
     margin: 0;
     font-size: 0.85rem;
     color: rgba(246, 236, 217, 0.6);
+}
+.footer-prop {
+    margin-top: 4px !important;
+    color: rgba(227, 167, 46, 0.75) !important;
 }
 
 /* ===== Responsive ===== */
 @media (max-width: 860px) {
     .about-grid { grid-template-columns: 1fr; }
     .framed-image img { height: 300px; }
+    .framed-image--mascot img { height: 320px; }
     .gallery-grid { grid-template-columns: 1fr 1fr; }
     .gallery-item--tall { grid-row: auto; }
     .gallery-item--tall img { height: 220px; }
     .location-grid { grid-template-columns: 1fr; }
+
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-badge { max-width: 220px; margin: 0 auto; order: -1; }
 }
 
 @media (max-width: 720px) {
@@ -377,5 +425,6 @@ img { max-width: 100%; display: block; }
 
     .menu-name { font-size: 1.1rem; }
 
-    .footer-row { flex-direction: column; align-items: flex-start; }
+    .footer-row { flex-direction: column; align-items: flex-start; gap: 18px; }
+    .footer-meta { text-align: left; }
 }
