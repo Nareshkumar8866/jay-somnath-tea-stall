@@ -643,30 +643,55 @@ img { max-width: 100%; display: block; }
 .location-map iframe { width: 100%; height: 100%; min-height: 340px; border: 0; display: block; } 
  
 /* ===== Footer ===== */ 
-.site-footer { 
-    background: var(--ink); 
-    border-top: 1px solid rgba(227, 167, 46, 0.25); 
-    padding: 26px 0; 
-} 
-.footer-row { 
-    display: flex; 
-    justify-space: space-between; 
-    align-items: center; 
-    flex-wrap: wrap; 
-    gap: 12px; 
-} 
-.footer-logo { font-size: 1.05rem; } 
-.footer-brand .logo-mark { width: 48px; height: 48px; } 
-.footer-meta { text-align: right; } 
-.site-footer p { 
-    margin: 0; 
-    font-size: 0.85rem; 
-    color: rgba(246, 236, 217, 0.6); 
-} 
-.footer-prop { 
-    margin-top: 4px !important; 
-    color: rgba(227, 167, 46, 0.75) !important; 
-} 
+/* Footer Container */
+footer {
+  background-color: #120A05; /* Dark Tea Brown */
+  color: #ffffff;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Logo Section */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-logo img {
+  height: 50px;
+  width: auto;
+  border-radius: 8px;
+}
+
+.footer-logo span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.footer-logo span highlight {
+  color: #f39c12; /* Tea Accent Color */
+}
+
+/* Copyright Section */
+.footer-copyright {
+  font-size: 0.95rem;
+  color: #d1d1d1;
+  text-align: center;
+}
+
+.footer-owner {
+  color: #f1c40f; /* High contrast bright gold */
+  font-weight: 600;
+  display: block;
+  margin-top: 4px;
+}
  
 /* ===== WhatsApp float ===== */ 
 .whatsapp-float { 
