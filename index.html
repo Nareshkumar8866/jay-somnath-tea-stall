@@ -1,45 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Title -->
-    <title>Jay Somnath Tea Store in Nikol, Ahmedabad | Rajwadi Chai, Cold Drinks, Snacks & Tobacco</title>
+    <title>Jay Somnath Tea Store | Nikol, Ahmedabad | 3D Interactive World of Rajwadi Chai</title>
 
-    <!-- Meta Description -->
-    <meta name="description" content="Jay Somnath Tea Store near Shukan Bungalows, Nikol, Ahmedabad. Fresh Rajwadi chai, Pepsi, Red Bull, wafers, khari, toast, biscuits, cigarettes, tobacco, pan masala & Gujarati farsan.">
-
-    <!-- SEO Keywords -->
-    <meta name="keywords" content="Jay Somnath Tea Store, tea stall in Nikol, Rajwadi chai Ahmedabad, Pepsi, Red Bull Nikol, cigarette shop Nikol, tobacco store, wafers khari toast Nikol, farsan Nikol Ahmedabad">
-
+    <!-- SEO Meta -->
+    <meta name="description" content="Jay Somnath Tea Store near Shukan Bungalows, Nikol, Ahmedabad. Experience our Rajwadi Chai, Pepsi, Red Bull, bakery snacks, cigarettes, tobacco & Gujarati farsan in 3D.">
+    <meta name="keywords" content="Jay Somnath Tea Store, tea stall Nikol, Rajwadi chai Ahmedabad, Nikol chai shop, Shukan Bungalows tea stall, cigarettes shop Nikol, farsan Nikol">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Jay Somnath Tea Store">
-    <meta name="theme-color" content="#1c0f06">
+    <meta name="theme-color" content="#0d0b09">
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Jay Somnath Tea Store | Rajwadi Chai, Drinks, Snacks & Tobacco">
-    <meta property="og:description" content="Fresh Rajwadi chai, Pepsi, Red Bull, Wafers, Khari, Toast, Cigarettes, Masala & Farsan near Shukan Bungalows, Nikol, Ahmedabad.">
-    <meta property="og:image" content="logo.jpg">
+    <meta property="og:title" content="Jay Somnath Tea Store | The World of Rajwadi Chai">
+    <meta property="og:description" content="Enter the interactive 3D miniature world of Nikol's favorite Rajwadi Chai, cold drinks, snacks and daily essentials.">
+    <meta property="og:image" content="https://placehold.co/1200x630/181410/e3a72e?text=Jay+Somnath+Tea+Store">
     <meta property="og:locale" content="en_IN">
     <meta property="og:site_name" content="Jay Somnath Tea Store">
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Jay Somnath Tea Store | Nikol Ahmedabad">
-    <meta name="twitter:description" content="Fresh Rajwadi chai, cold drinks, bakery snacks & cigarettes at Jay Somnath Tea Store, Nikol.">
-    <meta name="twitter:image" content="logo.jpg">
-
-    <link rel="icon" type="image/jpeg" href="logo.jpg">
-
-    <!-- Fonts -->
+    <!-- Fonts & CDNs -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&family=Cinzel:wght@600;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0d0b09',
+                            card: '#181410',
+                            accent: '#e3a72e',
+                            gold: '#d49038',
+                            copper: '#b8652b',
+                            cream: '#f7f1e5',
+                            glow: '#ff8c1a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Mukta', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                        tech: ['Rajdhani', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 
-    <!-- External CSS File -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Three.js & GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Schema Structured Data -->
     <script type="application/ld+json">
@@ -49,7 +69,6 @@
       "name": "Jay Somnath Tea Store",
       "description": "Jay Somnath Tea Store serves fresh Rajwadi chai, Pepsi, Red Bull, wafers, khari, toast, biscuits, tobacco, cigarettes, pan masala, gathiya, fafda & farsan near Shukan Bungalows, Nikol, Ahmedabad.",
       "telephone": "+91-88668-51613",
-      "image": "https://jay-somnath-tea-stall.vercel.app/logo.jpg",
       "priceRange": "₹",
       "address": {
         "@type": "PostalAddress",
@@ -62,379 +81,767 @@
       "sameAs": ["https://wa.me/918866851613"]
     }
     </script>
+
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+        body {
+            background-color: #0d0b09;
+            color: #f7f1e5;
+            font-family: 'Mukta', sans-serif;
+            overflow-x: hidden;
+        }
+        canvas#webgl-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .canvas-interactive {
+            pointer-events: auto !important;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0b09;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e3a72e;
+            border-radius: 3px;
+        }
+        /* Custom Cursor */
+        #custom-cursor {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            transition: transform 0.15s ease-out, opacity 0.2s ease;
+            transform: translate(-50%, -50%);
+        }
+        .cursor-expanded {
+            width: 80px !important;
+            height: 80px !important;
+            background: rgba(227, 167, 46, 0.15) !important;
+            border-color: #e3a72e !important;
+        }
+        /* Glassmorphism Overlays */
+        .glass-panel {
+            background: rgba(24, 20, 16, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(227, 167, 46, 0.18);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #f7f1e5 0%, #e3a72e 50%, #b8652b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-amber {
+            box-shadow: 0 0 30px rgba(227, 167, 46, 0.25);
+        }
+        /* Hide UI section text until scrolled into viewport focus */
+        .story-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 20;
+            pointer-events: none;
+        }
+        .story-content {
+            pointer-events: auto;
+        }
+    </style>
 </head>
-<body>
+<body class="antialiased selection:bg-brand-accent selection:text-black">
 
-<header class="site-header" id="siteHeader">
-    <div class="container header-row">
-        <a href="#home" class="logo">
-            <span class="logo-mark" aria-hidden="true"><img src="logo.jpg" alt="Jay Somnath Tea Store Logo"></span>
-            <span class="logo-text">Jay Somnath <em>Tea Store</em></span>
-        </a>
-
-        <nav id="navMenu" class="nav">
-            <a href="#home">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#highlights">Highlights</a>
-            <a href="#menu">Menu & Products</a>
-            <a href="#why-us">Why Us</a>
-            <a href="#video">Video</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#faq">FAQ</a>
-            <a href="#location">Location</a>
-        </nav>
-
-        <a href="https://wa.me/918866851613" class="btn btn-ghost nav-cta" target="_blank" rel="noopener">WhatsApp</a>
-
-        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-</header>
-
-<!-- 1. HERO SECTION -->
-<section class="hero" id="home">
-    <div class="hero-bg"><img src="shop.jpg" alt="Jay Somnath Tea Store Front" aria-hidden="true"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-steam" aria-hidden="true">
-        <svg viewBox="0 0 60 120" width="60" height="120"><path class="steam-path s1" d="M10 110 C 0 90, 20 80, 10 60 C 0 40, 20 30, 14 10" stroke="#E3A72E" stroke-width="2" fill="none" stroke-linecap="round"/><path class="steam-path s2" d="M30 110 C 20 90, 40 80, 30 60 C 20 40, 40 30, 34 10" stroke="#E3A72E" stroke-width="2" fill="none" stroke-linecap="round"/><path class="steam-path s3" d="M50 110 C 40 90, 60 80, 50 60 C 40 40, 60 30, 54 10" stroke="#E3A72E" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+    <!-- Custom Cursor -->
+    <div id="custom-cursor" class="hidden md:flex items-center justify-center w-6 h-6 rounded-full border border-brand-accent/60 bg-brand-accent/20 transition-all duration-300">
+        <span id="cursor-label" class="text-[9px] font-tech font-bold uppercase tracking-widest text-brand-accent opacity-0 transition-opacity"></span>
     </div>
 
-    <div class="container hero-grid">
-        <div class="hero-content reveal">
-            <p class="eyebrow">Rajwadi Tea &middot; Cold Drinks &middot; Daily Essentials</p>
-            <h1 class="display">Jay Somnath<br>Tea Store</h1>
-            <p class="hero-text">
-                Nikol's favourite hangout spot! Fresh Rajwadi Chai, Pepsi, Red Bull, Wafers, Khari, Toast, Biscuits, Cigarettes, Tobacco, Pan Masala & Hot Gujarati Farsan — available all day near Shukan Bungalows, Nikol, Ahmedabad.
-            </p>
-            <div class="hero-buttons">
-                <a href="https://wa.me/918866851613" class="btn btn-solid" target="_blank" rel="noopener">Message on WhatsApp</a>
-                <a href="tel:+918866851613" class="btn btn-outline">Call 88668 51613</a>
+    <!-- WebGL Rendering Canvas -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- LOADING SCREEN -->
+    <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0d0b09] transition-opacity duration-1000">
+        <div class="relative flex flex-col items-center">
+            <div class="w-24 h-24 mb-6 relative flex items-center justify-center">
+                <div class="absolute inset-0 rounded-full border-2 border-brand-accent/20 border-t-brand-accent animate-spin"></div>
+                <div class="text-3xl text-brand-accent font-serif font-bold">JS</div>
+            </div>
+            <h1 class="font-serif text-2xl md:text-3xl tracking-widest text-brand-cream uppercase text-center mb-2">JAY SOMNATH</h1>
+            <p class="font-tech text-brand-accent tracking-[0.3em] uppercase text-xs mb-8">TEA STORE &middot; NIKOL</p>
+            <div class="w-64 h-1 bg-brand-card rounded-full overflow-hidden border border-brand-accent/20">
+                <div id="loader-bar" class="h-full bg-gradient-to-r from-brand-copper via-brand-accent to-brand-gold w-0 transition-all duration-300"></div>
+            </div>
+            <p id="loader-text" class="font-tech text-xs text-brand-cream/60 mt-3 tracking-widest">LOADING WORLD OF CHAI...</p>
+        </div>
+    </div>
+
+    <!-- NAVIGATION HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 px-6 py-4 transition-all duration-500 glass-panel border-b border-brand-accent/10" id="siteHeader">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-accent to-brand-copper p-[1px] flex items-center justify-center shadow-lg">
+                    <div class="w-full h-full bg-brand-card rounded-[7px] flex items-center justify-center">
+                        <span class="font-serif font-bold text-brand-accent group-hover:scale-110 transition-transform">JS</span>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif font-bold text-lg tracking-wider text-brand-cream leading-tight">JAY SOMNATH</span>
+                    <span class="font-tech text-xs tracking-widest text-brand-accent uppercase">TEA STORE</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-8 font-tech text-sm tracking-widest uppercase text-brand-cream/80">
+                <a href="#home" class="hover:text-brand-accent transition-colors">Home</a>
+                <a href="#about" class="hover:text-brand-accent transition-colors">About</a>
+                <a href="#highlights" class="hover:text-brand-accent transition-colors">Highlights</a>
+                <a href="#menu" class="hover:text-brand-accent transition-colors">Menu</a>
+                <a href="#why-us" class="hover:text-brand-accent transition-colors">Why Us</a>
+                <a href="#video" class="hover:text-brand-accent transition-colors">Experience</a>
+                <a href="#gallery" class="hover:text-brand-accent transition-colors">Gallery</a>
+                <a href="#faq" class="hover:text-brand-accent transition-colors">FAQ</a>
+                <a href="#location" class="hover:text-brand-accent transition-colors">Location</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/918866851613" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-tech text-sm tracking-wider font-semibold shadow-lg hover:shadow-emerald-500/20 hover:scale-105 transition-all">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span>WHATSAPP</span>
+                </a>
+                
+                <button id="menuBtn" class="lg:hidden p-2 text-brand-cream hover:text-brand-accent focus:outline-none" aria-label="Toggle Navigation">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
             </div>
         </div>
 
-        <div class="hero-badge reveal" style="--delay:120ms">
-            <img src="logo.jpg" alt="Jay Somnath Tea Store Logo">
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="hidden lg:hidden fixed inset-x-0 top-[73px] bg-brand-card/95 backdrop-blur-xl border-b border-brand-accent/20 p-6 flex flex-col gap-4 text-center font-tech text-base tracking-widest uppercase">
+            <a href="#home" class="py-2 hover:text-brand-accent transition-colors">Home</a>
+            <a href="#about" class="py-2 hover:text-brand-accent transition-colors">About Us</a>
+            <a href="#highlights" class="py-2 hover:text-brand-accent transition-colors">Highlights</a>
+            <a href="#menu" class="py-2 hover:text-brand-accent transition-colors">Menu & Products</a>
+            <a href="#why-us" class="py-2 hover:text-brand-accent transition-colors">Why Us</a>
+            <a href="#gallery" class="py-2 hover:text-brand-accent transition-colors">Gallery</a>
+            <a href="#location" class="py-2 hover:text-brand-accent transition-colors">Location</a>
+            <a href="https://wa.me/918866851613" target="_blank" class="mt-2 py-3 bg-emerald-600 text-white rounded-lg font-bold flex items-center justify-center gap-2">
+                <i data-lucide="message-circle" class="w-5 h-5"></i>
+                <span>CHAT ON WHATSAPP</span>
+            </a>
         </div>
-    </div>
+    </header>
 
-    <a href="#about" class="scroll-cue" aria-label="Scroll to learn more"><span></span></a>
-</section>
+    <!-- MAIN SCROLL STORY CONTAINER -->
+    <main class="relative z-20">
 
-<!-- 2. MARQUEE SCROLLER -->
-<div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-        <span>Rajwadi Masala Chai</span><span>&middot;</span><span>Pepsi</span><span>&middot;</span><span>Red Bull</span><span>&middot;</span><span>Crispy Wafers</span><span>&middot;</span><span>Khari & Toast</span><span>&middot;</span><span>Biscuits</span><span>&middot;</span><span>Cigarettes & Tobacco</span><span>&middot;</span><span>Pan Masala</span><span>&middot;</span><span>Fafda Gathiya</span><span>&middot;</span>
-        <span>Rajwadi Masala Chai</span><span>&middot;</span><span>Pepsi</span><span>&middot;</span><span>Red Bull</span><span>&middot;</span><span>Crispy Wafers</span><span>&middot;</span><span>Khari & Toast</span><span>&middot;</span><span>Biscuits</span><span>&middot;</span><span>Cigarettes & Tobacco</span><span>&middot;</span><span>Pan Masala</span><span>&middot;</span><span>Fafda Gathiya</span><span>&middot;</span>
-    </div>
-</div>
-
-<!-- 3. QUICK HIGHLIGHTS STATS BAR -->
-<section class="quick-stats" id="highlights">
-    <div class="container stats-grid">
-        <div class="stat-card reveal">
-            <div class="stat-icon">☕</div>
-            <h3>Special Rajwadi Chai</h3>
-            <p>Kadak, Ginger & Elaichi flavor tea brewed fresh always.</p>
-        </div>
-        <div class="stat-card reveal" style="--delay:80ms">
-            <div class="stat-icon">🧊</div>
-            <h3>Chilled Drinks</h3>
-            <p>Ice cold Pepsi, Red Bull & Mineral Water bottles ready.</p>
-        </div>
-        <div class="stat-card reveal" style="--delay:160ms">
-            <div class="stat-icon">🥖</div>
-            <h3>Bakery & Snacks</h3>
-            <p>Crispy Khari, Toast, Biscuits, Wafers & Gujarati Farsan.</p>
-        </div>
-        <div class="stat-card reveal" style="--delay:240ms">
-            <div class="stat-icon">🚬</div>
-            <h3>Tobacco & Masala</h3>
-            <p>All popular cigarette brands, tobacco & pan masala counter.</p>
-        </div>
-    </div>
-</section>
-
-<!-- 4. ABOUT US SECTION -->
-<section class="about section" id="about">
-    <div class="container about-grid">
-        <div class="about-image reveal">
-            <div class="framed-image">
-                <img src="shop.jpg" alt="Jay Somnath Tea Store storefront in Nikol, Ahmedabad" loading="lazy">
-            </div>
-        </div>
-
-        <div class="about-content reveal" style="--delay:120ms">
-            <p class="eyebrow">Welcome To Our Shop</p>
-            <h2 class="display">Your everyday spot for tea, snacks & essentials</h2>
-
-            <p>
-                <strong>Jay Somnath Tea Store</strong> is a vibrant neighborhood destination in Nikol. Whether you are starting your morning with hot Rajwadi Chai, grabbing a chilled Pepsi or Red Bull in the afternoon, or catching up with friends over cigarettes and snacks, we have everything you need under one roof.
-            </p>
-
-            <p>
-                Our fresh Gujarati farsan — including Gathiya, Fafda, Bhajiya, Jalebi, and Dalvada — is prepared fresh daily in <strong>pure groundnut oil</strong> to ensure high quality and rich traditional taste.
-            </p>
-
-            <div class="badges-row">
-                <span class="oil-badge">Shuddh Singtel &middot; Pure Groundnut Oil</span>
-                <span class="oil-badge oil-badge--alt">Cold Drinks &amp; Energy Drinks</span>
-                <span class="oil-badge oil-badge--dark">Cigarettes &amp; Pan Masala</span>
-            </div>
-
-            <a href="#location" class="text-link">Visit us near Shukan Bungalows &rarr;</a>
-        </div>
-    </div>
-</section>
-
-<!-- 5. COMPLETE MENU & PRODUCTS SECTION -->
-<section class="menu section" id="menu">
-    <div class="container">
-        <div class="section-heading reveal">
-            <p class="eyebrow">What We Offer</p>
-            <h2 class="display">Chai, Cold Drinks, Snacks &amp; Tobacco</h2>
-            <p class="menu-note">Check out our complete shop items list — drop by or contact us anytime.</p>
-        </div>
-
-        <div class="menu-columns">
-
-            <!-- Category 1 -->
-            <div class="menu-group reveal">
-                <h3 class="menu-group-title">☕ Fresh Hot Tea (Chai)</h3>
-                <div class="menu-list">
-                    <div class="menu-row"><span class="menu-name">Rajwadi Masala Chai</span><span class="menu-dots"></span><span class="menu-price">Fresh Hot</span></div>
-                    <div class="menu-row"><span class="menu-name">Adrak (Ginger) Chai</span><span class="menu-dots"></span><span class="menu-price">Fresh Hot</span></div>
-                    <div class="menu-row"><span class="menu-name">Elaichi Special Chai</span><span class="menu-dots"></span><span class="menu-price">Fresh Hot</span></div>
-                    <div class="menu-row"><span class="menu-name">Kadak Cutting Chai</span><span class="menu-dots"></span><span class="menu-price">Fresh Hot</span></div>
+        <!-- SECTION 1: HERO -->
+        <section id="home" class="story-section min-h-screen">
+            <div class="max-w-7xl mx-auto px-6 w-full pt-20">
+                <div class="story-content max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent text-xs font-tech uppercase tracking-widest mb-6">
+                        <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
+                        NIKOL &middot; AHMEDABAD &middot; GUJARAT
+                    </div>
+                    <h1 class="font-serif text-5xl md:text-7xl font-extrabold tracking-tight text-brand-cream uppercase leading-[1.1] mb-6">
+                        JAY SOMNATH <br>
+                        <span class="text-gold-gradient">TEA STORE</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-brand-cream/80 font-sans leading-relaxed mb-8 max-w-xl">
+                        Nikol's favourite spot for authentic Rajwadi Chai, chilled beverages, crispy snacks, and daily essentials near Shukan Bungalows.
+                    </p>
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <a href="https://wa.me/918866851613" target="_blank" class="px-8 py-4 rounded-xl bg-gradient-to-r from-brand-accent via-brand-gold to-brand-copper text-brand-dark font-tech font-bold text-base tracking-widest uppercase shadow-xl hover:scale-105 transition-all flex items-center gap-3">
+                            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                            <span>ORDER / WHATSAPP</span>
+                        </a>
+                        <a href="#about" class="px-8 py-4 rounded-xl glass-panel text-brand-cream hover:text-brand-accent font-tech font-bold text-base tracking-widest uppercase hover:border-brand-accent/50 transition-all flex items-center gap-2">
+                            <span>EXPLORE THE STORE</span>
+                            <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Category 2 -->
-            <div class="menu-group reveal" style="--delay:80ms">
-                <h3 class="menu-group-title">🥤 Cold Beverages &amp; Energy Drinks</h3>
-                <div class="menu-list">
-                    <div class="menu-row"><span class="menu-name">Pepsi &amp; Cold Drinks</span><span class="menu-dots"></span><span class="menu-price">Chilled (MRP)</span></div>
-                    <div class="menu-row"><span class="menu-name">Red Bull Energy Drink</span><span class="menu-dots"></span><span class="menu-price">Chilled (MRP)</span></div>
-                    <div class="menu-row"><span class="menu-name">Mineral Water Bottles</span><span class="menu-dots"></span><span class="menu-price">Chilled (MRP)</span></div>
+        <!-- SECTION 2: ABOUT US -->
+        <section id="about" class="story-section min-h-screen">
+            <div class="max-w-7xl mx-auto px-6 w-full flex justify-end">
+                <div class="story-content max-w-xl glass-panel p-8 md:p-10 rounded-2xl border-l-4 border-l-brand-accent">
+                    <span class="font-tech text-xs tracking-widest text-brand-accent uppercase block mb-2">01 &middot; OUR STORY</span>
+                    <h2 class="font-serif text-3xl md:text-4xl text-brand-cream uppercase mb-4">Your Everyday Spot For Fresh Chai &amp; Good Times</h2>
+                    <p class="text-brand-cream/80 text-base leading-relaxed mb-4">
+                        <strong>Jay Somnath Tea Store</strong> is a vibrant neighborhood destination in Nikol. Whether you are starting your morning with hot Rajwadi Chai, grabbing a chilled Pepsi or Red Bull, or catching up with friends, we have everything you need under one roof.
+                    </p>
+                    <p class="text-brand-cream/80 text-base leading-relaxed mb-6">
+                        Our fresh Gujarati farsan — including Gathiya, Fafda, Bhajiya, Jalebi, and Dalvada — is prepared fresh daily in <strong>pure groundnut oil (Shuddh Singtel)</strong> to ensure authentic traditional taste.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-3 py-1 rounded-md bg-brand-accent/10 text-brand-accent text-xs font-tech">PURE GROUNDNUT OIL</span>
+                        <span class="px-3 py-1 rounded-md bg-brand-copper/20 text-brand-gold text-xs font-tech">COLD DRINKS & ENERGY</span>
+                        <span class="px-3 py-1 rounded-md bg-white/5 text-brand-cream/70 text-xs font-tech">TOBACCO & MASALA</span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Category 3 -->
-            <div class="menu-group reveal" style="--delay:120ms">
-                <h3 class="menu-group-title">🍞 Bakery, Wafers &amp; Biscuits</h3>
-                <div class="menu-list">
-                    <div class="menu-row"><span class="menu-name">Crispy Khari (Butter / Masala)</span><span class="menu-dots"></span><span class="menu-price">Fresh Stock</span></div>
-                    <div class="menu-row"><span class="menu-name">Tea Toast / Rusk</span><span class="menu-dots"></span><span class="menu-price">Fresh Stock</span></div>
-                    <div class="menu-row"><span class="menu-name">Potato Wafers &amp; Chips</span><span class="menu-dots"></span><span class="menu-price">Variety MRP</span></div>
-                    <div class="menu-row"><span class="menu-name">Packed Biscuits (Top Brands)</span><span class="menu-dots"></span><span class="menu-price">Variety MRP</span></div>
+        <!-- SECTION 3: HIGHLIGHTS -->
+        <section id="highlights" class="story-section min-h-screen">
+            <div class="max-w-7xl mx-auto px-6 w-full">
+                <div class="story-content text-center mb-12">
+                    <span class="font-tech text-xs tracking-widest text-brand-accent uppercase">02 &middot; HIGHLIGHT STATIONS</span>
+                    <h2 class="font-serif text-3xl md:text-5xl text-brand-cream uppercase">Crafted With Passion &amp; Quality</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 story-content">
+                    <div class="glass-panel p-6 rounded-2xl hover:border-brand-accent/60 transition-all group">
+                        <div class="text-brand-accent font-tech text-3xl mb-3">01</div>
+                        <h3 class="font-serif text-xl text-brand-cream mb-2 group-hover:text-brand-accent transition-colors">Special Rajwadi Chai</h3>
+                        <p class="text-sm text-brand-cream/70">Kadak, Ginger &amp; Elaichi brewed continuously with fresh milk and rich spices.</p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl hover:border-brand-accent/60 transition-all group">
+                        <div class="text-brand-accent font-tech text-3xl mb-3">02</div>
+                        <h3 class="font-serif text-xl text-brand-cream mb-2 group-hover:text-brand-accent transition-colors">Chilled Beverages</h3>
+                        <p class="text-sm text-brand-cream/70">Ice cold Pepsi, Red Bull, Sting, Sting Gold &amp; Mineral Water ready anytime.</p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl hover:border-brand-accent/60 transition-all group">
+                        <div class="text-brand-accent font-tech text-3xl mb-3">03</div>
+                        <h3 class="font-serif text-xl text-brand-cream mb-2 group-hover:text-brand-accent transition-colors">Bakery &amp; Snacks</h3>
+                        <p class="text-sm text-brand-cream/70">Crispy Khari, Tea Toast, Biscuits, Wafers &amp; hot authentic Gujarati Farsan.</p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl hover:border-brand-accent/60 transition-all group">
+                        <div class="text-brand-accent font-tech text-3xl mb-3">04</div>
+                        <h3 class="font-serif text-xl text-brand-cream mb-2 group-hover:text-brand-accent transition-colors">Tobacco &amp; Masala</h3>
+                        <p class="text-sm text-brand-cream/70">Complete selection of top branded cigarettes, premium tobacco &amp; pan masala.</p>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Category 4 -->
-            <div class="menu-group reveal" style="--delay:160ms">
-                <h3 class="menu-group-title">🥟 Gujarati Farsan &amp; Nashta</h3>
-                <div class="menu-list">
-                    <div class="menu-row"><span class="menu-name">Gathiya</span><span class="menu-dots"></span><span class="menu-price">Pure Oil</span></div>
-                    <div class="menu-row"><span class="menu-name">Fafda</span><span class="menu-dots"></span><span class="menu-price">Pure Oil</span></div>
-                    <div class="menu-row"><span class="menu-name">Garam Bhajiya</span><span class="menu-dots"></span><span class="menu-price">Pure Oil</span></div>
-                    <div class="menu-row"><span class="menu-name">Jalebi</span><span class="menu-dots"></span><span class="menu-price">Fresh Sweet</span></div>
-                    <div class="menu-row"><span class="menu-name">Dalvada</span><span class="menu-dots"></span><span class="menu-price">Hot &amp; Crispy</span></div>
+        <!-- SECTION 4: MENU & PRODUCTS -->
+        <section id="menu" class="story-section min-h-screen py-20">
+            <div class="max-w-7xl mx-auto px-6 w-full">
+                <div class="story-content text-center mb-8">
+                    <span class="font-tech text-xs tracking-widest text-brand-accent uppercase">03 &middot; STORE CATALOG</span>
+                    <h2 class="font-serif text-3xl md:text-5xl text-brand-cream uppercase mb-4">Complete Shop Menu</h2>
+                    <p class="text-brand-cream/70 max-w-xl mx-auto text-sm">Select items or message us directly on WhatsApp for quick pickup or immediate inquiries.</p>
+                </div>
+
+                <!-- Product Menu Tabs & Grid -->
+                <div class="story-content glass-panel p-6 md:p-8 rounded-2xl">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Category 1 -->
+                        <div class="p-4 rounded-xl bg-brand-card/60 border border-brand-accent/10">
+                            <h3 class="font-serif text-lg text-brand-accent uppercase mb-4 flex items-center gap-2">
+                                <span>☕ FRESH HOT CHAI</span>
+                            </h3>
+                            <ul class="space-y-3 font-sans text-sm text-brand-cream/80">
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span>Rajwadi Masala Chai</span><span class="text-brand-accent font-tech">Fresh Hot</span></li>
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span>Adrak (Ginger) Chai</span><span class="text-brand-accent font-tech">Fresh Hot</span></li>
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span>Elaichi Special Chai</span><span class="text-brand-accent font-tech">Fresh Hot</span></li>
+                                <li class="flex justify-between pb-1"><span>Kadak Cutting Chai</span><span class="text-brand-accent font-tech">Fresh Hot</span></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category 2 -->
+                        <div class="p-4 rounded-xl bg-brand-card/60 border border-brand-accent/10">
+                            <h3 class="font-serif text-lg text-brand-accent uppercase mb-4 flex items-center gap-2">
+                                <span>🥤 COLD DRINKS</span>
+                            </h3>
+                            <ul class="space-y-3 font-sans text-sm text-brand-cream/80">
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span>Pepsi &amp; Cold Drinks</span><span class="text-brand-accent font-tech">Chilled MRP</span></li>
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span>Red Bull Energy Drink</span><span class="text-brand-accent font-tech">Chilled MRP</span></li>
+                                <li class="flex justify-between pb-1"><span>Mineral Water Bottles</span><span class="text-brand-accent font-tech">Chilled MRP</span></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category 3 -->
+                        <div class="p-4 rounded-xl bg-brand-card/60 border border-brand-accent/10">
+                            <h3 class="font-serif text-lg text-brand-accent uppercase mb-4 flex items-center gap-2">
+                                <span>🥐 BAKERY &amp; SNACKS</span>
+                            </h3>
+                            <ul class="space-y-3 font-sans text-sm text-brand-cream/80">
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span>Crispy Butter Khari</span><span class="text-brand-accent font-tech">Fresh Stock</span></li>
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span>Tea Toast / Rusk</span><span class="text-brand-accent font-tech">Fresh Stock</span></li>
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span>Potato Wafers &amp; Chips</span><span class="text-brand-accent font-tech">Various</span></li>
+                                <li class="flex justify-between pb-1"><span>Packed Biscuits</span><span class="text-brand-accent font-tech">Top Brands</span></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category 4 -->
+                        <div class="p-4 rounded-xl bg-brand-card/60 border border-brand-accent/10">
+                            <h3 class="font-serif text-lg text-brand-accent uppercase mb-4 flex items-center gap-2">
+                                <span>🥟 GUJARATI FARSAN</span>
+                            </h3>
+                            <ul class="space-y-3 font-sans text-sm text-brand-cream/80">
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span>Gathiya &amp; Fafda</span><span class="text-brand-accent font-tech">Pure Oil</span></li>
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span>Garam Bhajiya</span><span class="text-brand-accent font-tech">Pure Oil</span></li>
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span>Sweet Jalebi</span><span class="text-brand-accent font-tech">Fresh Made</span></li>
+                                <li class="flex justify-between pb-1"><span>Hot Dalvada</span><span class="text-brand-accent font-tech">Crispy</span></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category 5 -->
+                        <div class="p-4 rounded-xl bg-brand-card/60 border border-brand-accent/10 lg:col-span-2">
+                            <h3 class="font-serif text-lg text-brand-accent uppercase mb-4 flex items-center gap-2">
+                                <span>🚬 TOBACCO, CIGARETTES &amp; PAN MASALA</span>
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-sans text-sm text-brand-cream/80">
+                                <ul class="space-y-3">
+                                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Branded Cigarettes</span><span class="text-brand-accent font-tech">All Brands</span></li>
+                                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Tabaku / Tobacco</span><span class="text-brand-accent font-tech">Available</span></li>
+                                </ul>
+                                <ul class="space-y-3">
+                                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Pan Masala &amp; Freshener</span><span class="text-brand-accent font-tech">Fresh Stock</span></li>
+                                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Mouth Fresheners &amp; Mints</span><span class="text-brand-accent font-tech">Available</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Category 5 -->
-            <div class="menu-group reveal" style="--delay:200ms">
-                <h3 class="menu-group-title">🚬 Tobacco, Cigarettes &amp; Masala</h3>
-                <div class="menu-list">
-                    <div class="menu-row"><span class="menu-name">Branded Cigarettes</span><span class="menu-dots"></span><span class="menu-price">All Brands</span></div>
-                    <div class="menu-row"><span class="menu-name">Tabaku / Tobacco</span><span class="menu-dots"></span><span class="menu-price">Available</span></div>
-                    <div class="menu-row"><span class="menu-name">Pan Masala &amp; Mouth Freshener</span><span class="menu-dots"></span><span class="menu-price">Available</span></div>
+        <!-- SECTION 5: WHY US -->
+        <section id="why-us" class="story-section min-h-screen">
+            <div class="max-w-7xl mx-auto px-6 w-full">
+                <div class="story-content text-center mb-12">
+                    <span class="font-tech text-xs tracking-widest text-brand-accent uppercase">04 &middot; OUR STANDARDS</span>
+                    <h2 class="font-serif text-3xl md:text-5xl text-brand-cream uppercase">Why Nikol Chooses Jay Somnath</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 story-content">
+                    <div class="glass-panel p-8 rounded-2xl text-center">
+                        <div class="w-16 h-16 rounded-full bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center mx-auto mb-6 text-brand-accent">
+                            <i data-lucide="shield-check" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-brand-cream mb-3">HYGIENE &amp; PURE OIL</h3>
+                        <p class="text-brand-cream/70 text-sm leading-relaxed">Prepared with 100% pure groundnut oil (Shuddh Singtel) and pristine hygienic standards daily.</p>
+                    </div>
+                    <div class="glass-panel p-8 rounded-2xl text-center">
+                        <div class="w-16 h-16 rounded-full bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center mx-auto mb-6 text-brand-accent">
+                            <i data-lucide="snowflake" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-brand-cream mb-3">ALWAYS FRESH &amp; COLD</h3>
+                        <p class="text-brand-cream/70 text-sm leading-relaxed">Continuous boiling hot chai served along with deep chilled energy drinks and soft beverages.</p>
+                    </div>
+                    <div class="glass-panel p-8 rounded-2xl text-center">
+                        <div class="w-16 h-16 rounded-full bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center mx-auto mb-6 text-brand-accent">
+                            <i data-lucide="store" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-brand-cream mb-3">ONE-STOP CONVENIENCE</h3>
+                        <p class="text-brand-cream/70 text-sm leading-relaxed">From morning chai and snacks to late evening chilling with daily essential items under one roof.</p>
+                    </div>
                 </div>
             </div>
+        </section>
 
-        </div>
+        <!-- SECTION 6: CHAI VIDEO EXPERIENCE -->
+        <section id="video" class="story-section min-h-screen">
+            <div class="max-w-5xl mx-auto px-6 w-full">
+                <div class="story-content text-center mb-8">
+                    <span class="font-tech text-xs tracking-widest text-brand-accent uppercase">05 &middot; VISUAL EXPERIENCE</span>
+                    <h2 class="font-serif text-3xl md:text-5xl text-brand-cream uppercase">Feel The Aroma &amp; Vibe</h2>
+                </div>
+                <div class="story-content glass-panel p-4 md:p-6 rounded-3xl glow-amber">
+                    <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black/80 flex items-center justify-center border border-brand-accent/30">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1&rel=0" title="Jay Somnath Tea Store Video" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: GALLERY -->
+        <section id="gallery" class="story-section min-h-screen py-20">
+            <div class="max-w-7xl mx-auto px-6 w-full">
+                <div class="story-content text-center mb-12">
+                    <span class="font-tech text-xs tracking-widest text-brand-accent uppercase">06 &middot; STORE GALLERY</span>
+                    <h2 class="font-serif text-3xl md:text-5xl text-brand-cream uppercase">Moments At Jay Somnath</h2>
+                </div>
+                <div class="story-content grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-panel p-3 rounded-2xl group cursor-pointer overflow-hidden" onclick="openLightbox('https://placehold.co/800x600/181410/e3a72e?text=Tea+Preparation')">
+                        <img src="https://placehold.co/600x400/181410/e3a72e?text=Rajwadi+Chai+Brewing" alt="Rajwadi Chai Preparation" class="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+                        <p class="font-tech text-center text-xs tracking-widest text-brand-accent uppercase mt-3 py-1">RAJWADI CHAI BREWING</p>
+                    </div>
+                    <div class="glass-panel p-3 rounded-2xl group cursor-pointer overflow-hidden" onclick="openLightbox('https://placehold.co/800x600/181410/e3a72e?text=Shop+Front')">
+                        <img src="https://placehold.co/600x400/181410/e3a72e?text=Shop+Frontview" alt="Shop Frontview" class="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+                        <p class="font-tech text-center text-xs tracking-widest text-brand-accent uppercase mt-3 py-1">STOREFRONT NEAR SHUKAN BUNGALOWS</p>
+                    </div>
+                    <div class="glass-panel p-3 rounded-2xl group cursor-pointer overflow-hidden" onclick="openLightbox('https://placehold.co/800x600/181410/e3a72e?text=Snacks+and+Drinks')">
+                        <img src="https://placehold.co/600x400/181410/e3a72e?text=Snacks+%26+Beverages" alt="Snacks and Beverages" class="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+                        <p class="font-tech text-center text-xs tracking-widest text-brand-accent uppercase mt-3 py-1">FRESH SNACKS &amp; COLD DRINKS</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: FAQ -->
+        <section id="faq" class="story-section min-h-screen">
+            <div class="max-w-4xl mx-auto px-6 w-full">
+                <div class="story-content text-center mb-12">
+                    <span class="font-tech text-xs tracking-widest text-brand-accent uppercase">07 &middot; FREQUENT QUESTIONS</span>
+                    <h2 class="font-serif text-3xl md:text-5xl text-brand-cream uppercase">Frequently Asked Questions</h2>
+                </div>
+                <div class="story-content space-y-4">
+                    <details class="glass-panel p-6 rounded-2xl group cursor-pointer">
+                        <summary class="font-serif text-xl text-brand-cream flex justify-between items-center list-none">
+                            <span>What are your shop timings?</span>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-accent group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <p class="text-brand-cream/70 text-sm mt-4 leading-relaxed">We are open every day from early morning to late night, serving fresh hot Rajwadi chai and snacks continuously.</p>
+                    </details>
+                    <details class="glass-panel p-6 rounded-2xl group cursor-pointer">
+                        <summary class="font-serif text-xl text-brand-cream flex justify-between items-center list-none">
+                            <span>Where are you located in Nikol?</span>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-accent group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <p class="text-brand-cream/70 text-sm mt-4 leading-relaxed">We are located near Shukan Bungalows, Nikol, Ahmedabad, Gujarat — easily accessible with convenient parking nearby.</p>
+                    </details>
+                    <details class="glass-panel p-6 rounded-2xl group cursor-pointer">
+                        <summary class="font-serif text-xl text-brand-cream flex justify-between items-center list-none">
+                            <span>Are snacks fried in fresh pure oil?</span>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-accent group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <p class="text-brand-cream/70 text-sm mt-4 leading-relaxed">Yes! All our hot farsan like Gathiya, Fafda, Bhajiya, and Dalvada are prepared in 100% pure groundnut oil (Shuddh Singtel).</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 9: LOCATION & CONTACT -->
+        <section id="location" class="story-section min-h-screen py-20">
+            <div class="max-w-7xl mx-auto px-6 w-full">
+                <div class="story-content text-center mb-12">
+                    <span class="font-tech text-xs tracking-widest text-brand-accent uppercase">08 &middot; VISIT US</span>
+                    <h2 class="font-serif text-3xl md:text-5xl text-brand-cream uppercase">Find Our Shop In Nikol</h2>
+                </div>
+                <div class="story-content grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div class="glass-panel p-8 rounded-2xl">
+                        <h3 class="font-serif text-2xl text-brand-cream mb-4">Jay Somnath Tea Store</h3>
+                        <p class="text-brand-cream/80 text-sm mb-6 leading-relaxed flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-brand-accent shrink-0 mt-0.5"></i>
+                            <span>Near Shukan Bungalows, Nikol, Ahmedabad, Gujarat - 382350</span>
+                        </p>
+                        <p class="text-brand-cream/80 text-sm mb-8 flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-brand-accent shrink-0"></i>
+                            <span>+91 88668 51613</span>
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Shukan+Bungalows%2C+Nikol%2C+Ahmedabad" target="_blank" class="px-6 py-3 rounded-xl bg-brand-accent text-brand-dark font-tech font-bold text-sm tracking-wider uppercase flex items-center gap-2">
+                                <i data-lucide="navigation" class="w-4 h-4"></i>
+                                <span>GET DIRECTIONS</span>
+                            </a>
+                            <a href="tel:+918866851613" class="px-6 py-3 rounded-xl glass-panel text-brand-cream hover:text-brand-accent font-tech font-bold text-sm tracking-wider uppercase flex items-center gap-2">
+                                <i data-lucide="phone-call" class="w-4 h-4"></i>
+                                <span>CALL NOW</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl h-[380px] overflow-hidden">
+                        <iframe class="w-full h-full rounded-xl border-0" src="https://maps.google.com/maps?q=Shukan%20Bungalows%20Nikol%20Ahmedabad&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="story-section min-h-screen text-center">
+            <div class="max-w-4xl mx-auto px-6 w-full">
+                <div class="story-content">
+                    <p class="font-tech text-brand-accent text-sm uppercase tracking-widest mb-4">COME FOR THE CHAI. STAY FOR THE MOMENTS.</p>
+                    <h2 class="font-serif text-4xl md:text-6xl text-brand-cream uppercase mb-8">JAY SOMNATH TEA STORE</h2>
+                    <p class="text-brand-cream/70 font-sans max-w-xl mx-auto mb-8">Near Shukan Bungalows, Nikol, Ahmedabad. Serving hot Rajwadi chai, cold beverages, and daily fresh snacks every single day.</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="https://wa.me/918866851613" target="_blank" class="px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-tech font-bold text-base tracking-widest uppercase flex items-center gap-3">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            <span>WHATSAPP US</span>
+                        </a>
+                        <a href="tel:+918866851613" class="px-8 py-4 rounded-xl glass-panel text-brand-cream hover:text-brand-accent font-tech font-bold text-base tracking-widest uppercase flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                            <span>CALL 88668 51613</span>
+                        </a>
+                    </div>
+                    <p class="font-tech text-xs text-brand-cream/40 uppercase tracking-widest mt-16">&copy; 2026 JAY SOMNATH TEA STORE &middot; NIKOL, AHMEDABAD. ALL RIGHTS RESERVED.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-xl flex items-center justify-center p-6" onclick="closeLightbox()">
+        <img id="lightboxImg" src="" alt="Enlarged view" class="max-w-full max-h-[85vh] rounded-2xl border border-brand-accent/30 shadow-2xl">
     </div>
-</section>
 
-<!-- 6. WHY CHOOSE US SECTION -->
-<section class="why-us section" id="why-us">
-    <div class="container">
-        <div class="section-heading reveal">
-            <p class="eyebrow">Our Promise</p>
-            <h2 class="display">Why Nikol loves Jay Somnath Tea Store</h2>
-        </div>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
-        <div class="features-grid">
-            <div class="feature-card reveal">
-                <div class="feature-num">01</div>
-                <h3>Hygiene &amp; Pure Oil</h3>
-                <p>All hot snacks are made in pure groundnut oil (Shuddh Singtel) with maximum hygiene maintained.</p>
-            </div>
-            <div class="feature-card reveal" style="--delay:100ms">
-                <div class="feature-num">02</div>
-                <h3>Always Fresh &amp; Cold</h3>
-                <p>Hot tea is brewed continuously while drinks like Pepsi & Red Bull are always kept chilled for you.</p>
-            </div>
-            <div class="feature-card reveal" style="--delay:200ms">
-                <div class="feature-num">03</div>
-                <h3>One-Stop Convenience</h3>
-                <p>Get tea, cold drinks, bakery items, wafers, cigarettes and pan masala at one friendly local counter.</p>
-            </div>
-        </div>
-    </div>
-</section>
+        // Custom Lightbox Logic
+        function openLightbox(url) {
+            const modal = document.getElementById('lightboxModal');
+            const img = document.getElementById('lightboxImg');
+            img.src = url;
+            modal.classList.remove('hidden');
+        }
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+        }
 
-<!-- 7. VIDEO SHOWCASE -->
-<section class="video-section section" id="video">
-    <div class="container video-grid">
-        <div class="video-content reveal">
-            <p class="eyebrow">A little chai magic</p>
-            <h2 class="display">Brewed fresh, poured hot</h2>
-            <p>
-                A quick look at what keeps our regulars coming back —
-                hot Rajwadi chai, chilled drinks, and fresh snacks every single day.
-            </p>
-        </div>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-        <div class="video-frame reveal" style="--delay:120ms">
-            <video
-                src="Chai-video -poster.mp4"
-                poster="chai-video-poster.jpg"
-                autoplay muted loop playsinline
-                aria-label="Jay Somnath Tea Store promotional video">
-            </video>
-        </div>
-    </div>
-</section>
+        // Custom Cursor Movement
+        const cursor = document.getElementById('custom-cursor');
+        const cursorLabel = document.getElementById('cursor-label');
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
 
-<!-- 8. PHOTO GALLERY -->
-<section class="gallery section" id="gallery">
-    <div class="container">
-        <div class="section-heading section-heading--light reveal">
-            <p class="eyebrow">Gallery</p>
-            <h2 class="display">What's inside our shop</h2>
-        </div>
+        document.querySelectorAll('a, button, .group').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('cursor-expanded'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-expanded'));
+        });
 
-        <div class="gallery-grid">
-            <div class="gallery-item gallery-item--tall reveal">
-                <img src="shop.jpg" alt="Jay Somnath Tea Store storefront" loading="lazy">
-                <div class="gallery-caption">Our Storefront in Nikol</div>
-            </div>
-            <div class="gallery-item reveal" style="--delay:80ms">
-                <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80" alt="Chilled Pepsi and Cold Drinks" loading="lazy">
-                <div class="gallery-caption">Cold Drinks &amp; Pepsi</div>
-            </div>
-            <div class="gallery-item reveal" style="--delay:120ms">
-                <img src="https://images.unsplash.com/photo-1551806235-a05ea1221b20?auto=format&fit=crop&w=800&q=80" alt="Red Bull Energy Drink" loading="lazy">
-                <div class="gallery-caption">Red Bull Energy Drink</div>
-            </div>
-            <div class="gallery-item reveal" style="--delay:160ms">
-                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=800&q=80" alt="Crispy Bakery Toast Khari and Biscuits" loading="lazy">
-                <div class="gallery-caption">Khari, Toast &amp; Biscuits</div>
-            </div>
-            <div class="gallery-item reveal" style="--delay:200ms">
-                <img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=800&q=80" alt="Crispy Wafers and Potato Chips" loading="lazy">
-                <div class="gallery-caption">Wafers &amp; Snacks</div>
-            </div>
-        </div>
-    </div>
-</section>
+        // THREE.JS CINEMATIC 3D ENGINE
+        window.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
 
-<!-- 9. FAQ ACCORDION SECTION -->
-<section class="faq section" id="faq">
-    <div class="container">
-        <div class="section-heading reveal">
-            <p class="eyebrow">Common Questions</p>
-            <h2 class="display">Frequently asked questions</h2>
-        </div>
+            const canvas = document.getElementById('webgl-canvas');
+            const scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x0d0b09, 0.04);
 
-        <div class="faq-list">
-            <details class="faq-item reveal">
-                <summary>Where is Jay Somnath Tea Store located?</summary>
-                <div class="faq-answer">
-                    <p>We are conveniently located near <strong>Shukan Bungalows, Nikol, Ahmedabad, Gujarat</strong>. You can click on 'Get Directions' in our Location section below to open direct Google Maps navigation.</p>
-                </div>
-            </details>
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+            camera.position.set(0, 2, 8);
 
-            <details class="faq-item reveal" style="--delay:80ms">
-                <summary>What items are available at the store?</summary>
-                <div class="faq-answer">
-                    <p>We serve fresh Rajwadi Chai, Pepsi, Red Bull, Cold Water, Wafers, Bakery Khari & Toast, Biscuits, Cigarettes, Tobacco, Pan Masala, and hot Gujarati Farsan (Gathiya, Fafda, Bhajiya, Jalebi, Dalvada).</p>
-                </div>
-            </details>
+            const renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                antialias: true,
+                alpha: true,
+                powerPreference: "high-performance"
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2;
 
-            <details class="faq-item reveal" style="--delay:160ms">
-                <summary>Are cold drinks and snacks always in stock?</summary>
-                <div class="faq-answer">
-                    <p>Yes! Chilled Pepsi, Red Bull, packaged wafers, biscuits, khari, and tobacco/cigarettes are kept fully stocked daily.</p>
-                </div>
-            </details>
+            // LIGHTING
+            const ambientLight = new THREE.AmbientLight(0xffeedd, 0.6);
+            scene.add(ambientLight);
 
-            <details class="faq-item reveal" style="--delay:240ms">
-                <summary>How can I contact the shop?</summary>
-                <div class="faq-answer">
-                    <p>You can call us directly at <a href="tel:+918866851613"><strong>+91 88668 51613</strong></a> or send us a message on WhatsApp anytime.</p>
-                </div>
-            </details>
-        </div>
-    </div>
-</section>
+            const warmPointLight = new THREE.PointLight(0xff8c1a, 3, 15);
+            warmPointLight.position.set(0, 3, 2);
+            warmPointLight.castShadow = true;
+            scene.add(warmPointLight);
 
-<!-- 10. LOCATION & CONTACT -->
-<section class="location section" id="location">
-    <div class="container location-grid">
-        <div class="location-content reveal">
-            <p class="eyebrow">Find us</p>
-            <h2 class="display">Drop by for tea, snacks or cold drinks</h2>
+            const dirLight = new THREE.DirectionalLight(0xffe8d0, 1.5);
+            dirLight.position.set(5, 8, 5);
+            dirLight.castShadow = true;
+            scene.add(dirLight);
 
-            <p class="location-address">
-                <strong>Jay Somnath Tea Store</strong><br>
-                Near Shukan Bungalows, Nikol<br>
-                Ahmedabad, Gujarat - 382350
-            </p>
+            // 3D CHAI GROUP (Exploded View Hierarchy)
+            const chaiGroup = new THREE.Group();
+            scene.add(chaiGroup);
 
-            <div class="hero-buttons">
-                <a href="https://wa.me/918866851613" class="btn btn-solid" target="_blank" rel="noopener">Message on WhatsApp</a>
-                <a href="tel:+918866851613" class="btn btn-outline btn-outline--dark">Call 88668 51613</a>
-            </div>
+            // Materials
+            const glassMaterial = new THREE.MeshPhysicalMaterial({
+                color: 0xffffff,
+                transparent: true,
+                opacity: 0.35,
+                roughness: 0.1,
+                metalness: 0.1,
+                transmission: 0.9,
+                ior: 1.5,
+                thickness: 0.5
+            });
 
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Shukan+Bungalows%2C+Nikol%2C+Ahmedabad"
-               class="text-link" target="_blank" rel="noopener">Get directions on Google Maps &rarr;</a>
-        </div>
+            const teaLiquidMaterial = new THREE.MeshStandardMaterial({
+                color: 0x7c3f1d,
+                roughness: 0.2,
+                metalness: 0.1
+            });
 
-        <div class="location-map reveal" style="--delay:120ms">
-            <iframe
-                title="Jay Somnath Tea Store location map"
-                src="https://www.google.com/maps?q=Shukan+Bungalows%2C+Nikol%2C+Ahmedabad&output=embed"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-    </div>
-</section>
+            const copperMaterial = new THREE.MeshStandardMaterial({
+                color: 0xb8652b,
+                metalness: 0.85,
+                roughness: 0.25
+            });
 
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="container footer-row">
-        <a href="#home" class="logo footer-brand">
-            <span class="logo-mark" aria-hidden="true"><img src="logo.jpg" alt="Jay Somnath Logo"></span>
-            <span class="logo-text footer-logo">Jay Somnath <em>Tea Store</em></span>
-        </a>
-        <div class="footer-meta">
-            <p>&copy; <span data-current-year>2026</span> Jay Somnath Tea Store, Nikol. All rights reserved.</p>
-            <p class="footer-prop">Prop. Nonaram Parangi</p>
-        </div>
-    </div>
-</footer>
+            const leafMaterial = new THREE.MeshStandardMaterial({
+                color: 0x3d2817,
+                roughness: 0.8
+            });
 
-<!-- FLOATING WHATSAPP BUTTON -->
-<a href="https://wa.me/918866851613" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with Jay Somnath Tea Store on WhatsApp"> 
-    <span class="whatsapp-float-ring"></span> 
-    <img src="jay.png" alt="WhatsApp Contact"> 
-</a> 
+            const spiceMaterial = new THREE.MeshStandardMaterial({
+                color: 0x8c6b42,
+                roughness: 0.6
+            });
 
-<!-- External JS File -->
-<script src="script.js"></script> 
+            // 1. Saucer Base
+            const saucerGeo = new THREE.CylinderGeometry(1.2, 0.8, 0.1, 32);
+            const saucerMesh = new THREE.Mesh(saucerGeo, copperMaterial);
+            saucerMesh.position.y = -0.05;
+            chaiGroup.add(saucerMesh);
 
-</body> 
+            // 2. Glass Cup Outer
+            const glassGeo = new THREE.CylinderGeometry(0.8, 0.6, 1.4, 32, 1, true);
+            const glassMesh = new THREE.Mesh(glassGeo, glassMaterial);
+            glassMesh.position.y = 0.7;
+            chaiGroup.add(glassMesh);
+
+            // 3. Tea Liquid Inner
+            const liquidGeo = new THREE.CylinderGeometry(0.76, 0.58, 1.2, 32);
+            const liquidMesh = new THREE.Mesh(liquidGeo, teaLiquidMaterial);
+            liquidMesh.position.y = 0.65;
+            chaiGroup.add(liquidMesh);
+
+            // 4. Floating Steam Layer (Particles)
+            const particleCount = 200;
+            const steamGeo = new THREE.BufferGeometry();
+            const steamPositions = new Float32Array(particleCount * 3);
+            for(let i=0; i<particleCount*3; i+=3) {
+                steamPositions[i] = (Math.random() - 0.5) * 0.8;
+                steamPositions[i+1] = Math.random() * 1.5 + 1.4;
+                steamPositions[i+2] = (Math.random() - 0.5) * 0.8;
+            }
+            steamGeo.setAttribute('position', new THREE.BufferAttribute(steamPositions, 3));
+            const steamMat = new THREE.PointsMaterial({
+                color: 0xffe8d0,
+                size: 0.05,
+                transparent: true,
+                opacity: 0.4
+            });
+            const steamParticles = new THREE.Points(steamGeo, steamMat);
+            chaiGroup.add(steamParticles);
+
+            // 5. Floating Tea Leaves Layer
+            const leafGroup = new THREE.Group();
+            for(let i=0; i<8; i++) {
+                const leafGeo = new THREE.ConeGeometry(0.06, 0.2, 4);
+                const leaf = new THREE.Mesh(leafGeo, leafMaterial);
+                leaf.position.set((Math.random()-0.5)*0.6, 0, (Math.random()-0.5)*0.6);
+                leaf.rotation.set(Math.random()*3, Math.random()*3, Math.random()*3);
+                leafGroup.add(leaf);
+            }
+            leafGroup.position.y = 2.2;
+            chaiGroup.add(leafGroup);
+
+            // 6. Floating Cardamom Spice Layer
+            const cardamomGroup = new THREE.Group();
+            for(let i=0; i<5; i++) {
+                const spiceGeo = new THREE.DodecahedronGeometry(0.08);
+                const spice = new THREE.Mesh(spiceGeo, spiceMaterial);
+                spice.position.set((Math.random()-0.5)*0.5, 0, (Math.random()-0.5)*0.5);
+                cardamomGroup.add(spice);
+            }
+            cardamomGroup.position.y = 2.8;
+            chaiGroup.add(cardamomGroup);
+
+            // COPPER KETTLE IN BACKGROUND
+            const kettleGroup = new THREE.Group();
+            const kettleBodyGeo = new THREE.SphereGeometry(1, 32, 16);
+            const kettleMesh = new THREE.Mesh(kettleBodyGeo, copperMaterial);
+            kettleGroup.add(kettleMesh);
+            kettleGroup.position.set(-3.5, 0.5, -2);
+            scene.add(kettleGroup);
+
+            // FLOATING PRODUCT STATIONS
+            const stationGroup = new THREE.Group();
+            for(let i=0; i<4; i++) {
+                const pGeo = new THREE.BoxGeometry(0.6, 0.8, 0.1);
+                const pMesh = new THREE.Mesh(pGeo, copperMaterial);
+                const angle = (i / 4) * Math.PI * 2;
+                pMesh.position.set(Math.cos(angle)*4, 0, Math.sin(angle)*4);
+                stationGroup.add(pMesh);
+            }
+            scene.add(stationGroup);
+
+            // GSAP SCROLLTIMELINE ANIMATIONS
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "main",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 1.2
+                }
+            });
+
+            // Camera Motion across sections
+            tl.to(camera.position, { z: 5, y: 1.5, x: 0 }, 0)
+              // Exploded Chai Animation (Section 2/3)
+              .to(saucerMesh.position, { y: -1.2 }, 0.2)
+              .to(glassMesh.position, { y: -0.2 }, 0.2)
+              .to(liquidMesh.position, { y: 0.8 }, 0.2)
+              .to(steamParticles.position, { y: 1.2 }, 0.2)
+              .to(leafGroup.position, { y: 2.2 }, 0.2)
+              .to(cardamomGroup.position, { y: 3.2 }, 0.2)
+              // Re-assemble (Section 4)
+              .to(saucerMesh.position, { y: -0.05 }, 0.5)
+              .to(glassMesh.position, { y: 0.7 }, 0.5)
+              .to(liquidMesh.position, { y: 0.65 }, 0.5)
+              .to(leafGroup.position, { y: 0.8 }, 0.5)
+              .to(cardamomGroup.position, { y: 0.9 }, 0.5)
+              // Transition Camera to Station Group
+              .to(camera.position, { x: 3, y: 1, z: 4 }, 0.6)
+              .to(chaiGroup.rotation, { y: Math.PI * 2 }, 0.8)
+              .to(camera.position, { x: 0, y: 2, z: 7 }, 1.0);
+
+            // ANIMATION LOOP
+            let clock = new THREE.Clock();
+            function animate() {
+                requestAnimationFrame(animate);
+                const elapsedTime = clock.getElapsedTime();
+
+                // Rotate steam particles
+                steamParticles.rotation.y = elapsedTime * 0.2;
+                chaiGroup.rotation.y += 0.003;
+                kettleGroup.rotation.y = Math.sin(elapsedTime * 0.5) * 0.2;
+                stationGroup.rotation.y = elapsedTime * 0.1;
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // RESIZE HANDLER
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            // SIMULATED ASSET PRELOADER
+            let progress = 0;
+            const loaderBar = document.getElementById('loader-bar');
+            const loaderScreen = document.getElementById('loader');
+
+            const interval = setInterval(() => {
+                progress += 20;
+                loaderBar.style.width = progress + '%';
+                if(progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loaderScreen.style.opacity = '0';
+                        setTimeout(() => loaderScreen.style.display = 'none', 1000);
+                    }, 300);
+                }
+            }, 100);
+        });
+    </script>
+</body>
 </html>
